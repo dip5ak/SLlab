@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<script>
+function capitalize(str){
+
+    let words = str.split(" ");
+
+    for(let i=0;i<words.length;i++){
+        words[i] = words[i][0].toUpperCase() + words[i].substring(1);
+    }
+
+    return words.join(" ");
+}
+
+let text = prompt("Enter a sentence:");
+document.write(capitalize(text));
+</script>
+
+</body>
+</html>

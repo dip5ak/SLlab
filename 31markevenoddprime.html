@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<input type="number" id="num">
+<button onclick="generate()">Generate</button>
+
+<div id="result"></div>
+
+<script>
+
+function isPrime(n){
+    if(n<2) return false;
+    for(let i=2;i<=Math.sqrt(n);i++){
+        if(n%i==0) return false;
+    }
+    return true;
+}
+
+function generate(){
+
+let n=Number(document.getElementById("num").value);
+let result=document.getElementById("result");
+
+result.innerHTML="";
+
+for(let i=1;i<=n;i++){
+
+let box=document.createElement("div");
+
+box.innerHTML=i;
+
+box.style.display="inline-block";
+box.style.width="40px";
+box.style.margin="2px";
+box.style.textAlign="center";
+
+if(isPrime(i))
+box.style.background="red";
+
+else if(i%2==0)
+box.style.background="green";
+
+else
+box.style.background="yellow";
+
+result.appendChild(box);
+
+}
+
+}
+
+</script>
+
+</body>
+</html>

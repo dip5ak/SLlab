@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<script>
+
+function daysBetween(d1,d2){
+
+let date1=new Date(d1);
+let date2=new Date(d2);
+
+let difference=date2.getTime()-date1.getTime();
+
+let days=difference/(1000*60*60*24);
+
+return days;
+
+}
+
+document.write(daysBetween("2026-06-01","2026-07-01")+" Days");
+
+</script>
+
+</body>
+</html>

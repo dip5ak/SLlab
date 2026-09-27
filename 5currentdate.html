@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<script>
+
+let today = new Date();
+
+let dd = today.getDate();
+let mm = today.getMonth()+1;
+let yyyy = today.getFullYear();
+
+document.write("MM-DD-YYYY : " + mm + "-" + dd + "-" + yyyy);
+document.write("<br>");
+
+document.write("DD-MM-YYYY : " + dd + "-" + mm + "-" + yyyy);
+document.write("<br>");
+
+document.write("MM/DD/YYYY : " + mm + "/" + dd + "/" + yyyy);
+document.write("<br>");
+
+document.write("DD/MM/YYYY : " + dd + "/" + mm + "/" + yyyy);
+document.write("<br>");
+
+document.write(today.toDateString());
+
+</script>
+
+</body>
+</html>

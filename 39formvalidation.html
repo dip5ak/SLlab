@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Q39 - Form Validation</title>
+<style>
+  body { font-family: Arial, sans-serif; padding: 20px; background: #f4f4f4; }
+  form { max-width: 420px; background: #fff; padding: 20px; border-radius: 6px; box-shadow: 0 1px 4px rgba(0,0,0,0.15); }
+  label { display: block; margin-top: 12px; font-weight: bold; }
+  input[type="text"], input[type="email"], input[type="password"], select {
+    width: 100%; padding: 6px; margin-top: 4px; box-sizing: border-box;
+  }
+  .error { color: #e53935; font-size: 0.85em; }
+  button { margin-top: 16px; padding: 8px 16px; background: #1e88e5; color: #fff; border: none; border-radius: 4px; cursor: pointer; }
+</style>
+</head>
+<body>
+
+<form id="regForm" novalidate>
+  <label>Name</label>
+  <input type="text" id="name">
+  <span class="error" id="nameErr"></span>
+
+  <label>Address</label>
+  <input type="text" id="address">
+  <span class="error" id="addressErr"></span>
+
+  <label>Username</label>
+  <input type="text" id="username">
+  <span class="error" id="usernameErr"></span>
+
+  <label>Email</label>
+  <input type="text" id="email">
+  <span class="error" id="emailErr"></span>
+
+  <label>Password</label>
+  <input type="password" id="password">
+  <span class="error" id="passwordErr"></span>
+
+  <label>Website</label>
+  <input type="text" id="website">
+
+  <label>Phone</label>
+  <input type="text" id="phone">
+  <span class="error" id="phoneErr"></span>
+
+  <label>Gender</label>
+  <input type="radio" name="gender" value="Male"> Male
+  <input type="radio" name="gender" value="Female"> Female
+  <span class="error" id="genderErr"></span>
+
+  <label>Course</label>
+  <select id="course">
+    <option value="">-- Select Course --</option>
+    <option value="BCA">BCA</option>
+    <option value="BSc CSIT">BSc CSIT</option>
+    <option value="BIT">BIT</option>
+  </select>
+  <span class="error" id="courseErr"></span>
+
+  <button type="submit">Submit</button>
+</form>
+
+<script>
+document.getElementById('regForm').addEventListener('submit', function (e) {
+  e.preventDefault();
+  let valid = true;
+
+  function showError(id, msg) {
+    document.getElementById(id).textContent = msg;
+  }
+  function clearError(id) {
+    document.getElementById(id).textContent = '';
+  }
+
+  // Name: required, no numbers
+  const name = document.getElementById('name').value.trim();
+  if (name === '' || /\d/.test(name)) {
+    showError('nameErr', 'Name is required and must not contain numbers.');
+    valid = false;
+  } else clearError('nameErr');
+
+  // Address: required
+  const address = document.getElementById('address').value.trim();
+  if (address === '') {
+    showError('addressErr', 'Address is required.');
+    valid = false;
+  } else clearError('addressErr');
+
+  // Username: required, no spaces, no special chars except underscore
+  const username = document.getElementById('username').value.trim();
+  if (username === '' || /[^a-zA-Z0-9_]/.test(username) || /\s/.test(username)) {
+    showError('usernameErr', 'Username must not contain spaces or special characters (except _).');
+    valid = false;
+  } else clearError('usernameErr');
+
+  // Email: required, must contain @
+  const email = document.getElementById('email').value.trim();
+  if (email === '' || !email.includes('@')) {
+    showError('emailErr', 'A valid email with "@" is required.');
+    valid = false;
+  } else clearError('emailErr');
+
+  // Password: required, min 8 chars, at least 1 digit, 1 uppercase, 1 lowercase, 1 special char
+  const password = document.getElementById('password').value;
+  const passRegex = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+  if (!passRegex.test(password)) {
+    showError('passwordErr', 'Password must be 8+ chars with upper, lower, digit, and special char.');
+    valid = false;
+  } else clearError('passwordErr');
+
+  // Phone: required, digits only, 8/9/7 digits (per assignment)
+  const phone = document.getElementById('phone').value.trim();
+  if (phone === '' || !/^\d+$/.test(phone) || ![7, 8, 9].includes(phone.length)) {
+    showError('phoneErr', 'Phone must contain only digits and be 7, 8, or 9 digits long.');
+    valid = false;
+  } else clearError('phoneErr');
+
+  // Gender: required
+  const genderSelected = document.querySelector('input[name="gender"]:checked');
+  if (!genderSelected) {
+    showError('genderErr', 'Please select a gender.');
+    valid = false;
+  } else clearError('genderErr');
+
+  // Course: required
+  const course = document.getElementById('course').value;
+  if (course === '') {
+    showError('courseErr', 'Please select a course.');
+    valid = false;
+  } else clearError('courseErr');
+
+  if (valid) {
+    alert('Form submitted successfully!');
+    this.reset();
+  }
+});
+</script>
+</body>
+</html>

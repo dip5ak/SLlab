@@ -1,0 +1,30 @@
+<p id="p1">First Paragraph</p>
+<p id="p2">Second Paragraph</p>
+<p id="p3">Third Paragraph</p>
+<p id="p4">Fourth Paragraph</p>
+
+<script>
+
+let first=document.querySelector("p");
+
+let second=document.querySelector("#p2");
+
+let all=document.querySelectorAll("p");
+
+all.forEach(function(item,index){
+
+console.log(item.textContent);
+
+item.style.fontSize="20px";
+item.style.border="1px solid black";
+
+if(index==0 || index==2)
+item.style.color="green";
+else
+item.style.color="red";
+
+});
+
+document.querySelector("#p4").textContent="Fourth Paragraph";
+
+</script>

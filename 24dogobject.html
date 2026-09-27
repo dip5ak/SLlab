@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<script>
+
+let dog = {};
+
+console.log(dog);
+
+dog.name = "Tommy";
+dog.legs = 4;
+dog.color = "Brown";
+dog.age = 3;
+
+dog.bark = function(){
+    return "Woof Woof";
+};
+
+document.write("Name: " + dog.name + "<br>");
+document.write("Legs: " + dog.legs + "<br>");
+document.write("Color: " + dog.color + "<br>");
+document.write("Age: " + dog.age + "<br>");
+document.write("Bark: " + dog.bark() + "<br>");
+
+dog.breed = "German Shepherd";
+
+dog.getDogInfo = function(){
+    return this.name + " " + this.breed;
+};
+
+document.write("Dog Info: " + dog.getDogInfo());
+
+</script>
+
+</body>
+</html>

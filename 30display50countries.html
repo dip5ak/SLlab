@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<table border="1" id="countryTable"></table>
+
+<script>
+
+let countries=[
+"Nepal","India","China","USA","Japan","Canada",
+"Brazil","France","Germany","Italy","Australia","Pakistan",
+"Bangladesh","Sri Lanka","Bhutan","Russia","UK","Mexico",
+"Spain","Portugal","Norway","Sweden","Denmark","Finland",
+"Argentina","Chile","Peru","Egypt","Nigeria","Kenya",
+"Turkey","Iran","Iraq","Thailand","Malaysia","Singapore",
+"Indonesia","Vietnam","Philippines","South Korea","North Korea","Afghanistan",
+"UAE","Saudi Arabia","Qatar","Oman","Kuwait","Belgium",
+"Netherlands","Switzerland"
+];
+
+let table=document.getElementById("countryTable");
+
+for(let i=0;i<countries.length;i+=6){
+
+let row=table.insertRow();
+
+for(let j=i;j<i+6 && j<countries.length;j++){
+
+let cell=row.insertCell();
+
+cell.innerHTML=countries[j];
+
+}
+
+}
+
+</script>
+
+</body>
+</html>

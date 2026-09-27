@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<script>
+
+let personAccount = {
+
+firstName:"Dipak",
+lastName:"Shrestha",
+
+incomes:[10000,12000],
+expenses:[4000,2000],
+
+totalIncome:function(){
+return this.incomes.reduce((a,b)=>a+b,0);
+},
+
+totalExpense:function(){
+return this.expenses.reduce((a,b)=>a+b,0);
+},
+
+accountBalance:function(){
+return this.totalIncome()-this.totalExpense();
+},
+
+accountInfo:function(){
+return this.firstName+" "+this.lastName;
+}
+
+};
+
+document.write("Name: "+personAccount.accountInfo()+"<br>");
+document.write("Income: "+personAccount.totalIncome()+"<br>");
+document.write("Expense: "+personAccount.totalExpense()+"<br>");
+document.write("Balance: "+personAccount.accountBalance());
+
+</script>
+
+</body>
+</html>

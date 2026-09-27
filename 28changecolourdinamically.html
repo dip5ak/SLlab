@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Q28 - 30 Days of JavaScript Challenges</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #1e1e1e;
+    color: #fff;
+    padding: 30px;
+  }
+  .wrapper {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  h1, h2 {
+    text-align: center;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  li {
+    padding: 10px;
+    margin: 6px 0;
+    border-radius: 4px;
+    color: #000;
+    font-weight: bold;
+  }
+  #dateTime {
+    text-align: center;
+    padding: 8px;
+    border-radius: 4px;
+    margin: 10px 0;
+    font-weight: bold;
+  }
+</style>
+</head>
+<body>
+
+<div class="wrapper">
+  <h1>Asabeneh Yetayeh challenges in <span id="year">2020</span></h1>
+  <h2>30DaysOfJavaScript Challenge</h2>
+  <ul id="challengeList">
+    <li>Python Challenge Done</li>
+    <li>JavaScript Challenge Ongoing</li>
+    <li>React Challenge Coming</li>
+    <li>FullStack Challenge Coming</li>
+    <li>DataAnalysis Challenge Coming</li>
+    <li>ReactNative Challenge Coming</li>
+    <li>MachineLearning Challenge Coming</li>
+  </ul>
+</div>
+
+<script>
+  // ---------- a. Year color changes every 1 second ----------
+  const yearSpan = document.getElementById('year');
+
+  function randomColor() {
+    return '#' + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
+  }
+
+  setInterval(() => {
+    yearSpan.style.color = randomColor();
+  }, 1000);
+
+  // ---------- b. Date & time element, background color changes every second ----------
+  const wrapper = document.querySelector('.wrapper');
+  const dateTimeEl = document.createElement('p');
+  dateTimeEl.id = 'dateTime';
+  wrapper.insertBefore(dateTimeEl, document.getElementById('challengeList'));
+
+  function updateDateTime() {
+    const now = new Date();
+    dateTimeEl.textContent = now.toDateString() + '  ' + now.toLocaleTimeString();
+    dateTimeEl.style.backgroundColor = randomColor();
+  }
+
+  updateDateTime();
+  setInterval(updateDateTime, 1000);
+
+  // ---------- c, d, e. Color each challenge based on its status ----------
+  const listItems = document.querySelectorAll('#challengeList li');
+
+  listItems.forEach(li => {
+    const text = li.textContent;
+
+    if (text.includes('Done')) {
+      li.classList.add('completed');
+      li.style.backgroundColor = 'green';
+      li.style.color = '#fff';
+    } else if (text.includes('Ongoing')) {
+      li.classList.add('ongoing');
+      li.style.backgroundColor = 'yellow';
+    } else if (text.includes('Coming')) {
+      li.classList.add('coming');
+      li.style.backgroundColor = 'red';
+      li.style.color = '#fff';
+    }
+  });
+</script>
+
+</body>
+</html>

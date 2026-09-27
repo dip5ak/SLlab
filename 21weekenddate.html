@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<script>
+
+function getWeekendDate() {
+    let today = new Date();
+    let day = today.getDay();
+
+    let saturday = new Date(today);
+    saturday.setDate(today.getDate() + (6 - day));
+
+    document.write("Upcoming Saturday: " + saturday.toDateString());
+}
+
+getWeekendDate();
+
+</script>
+
+</body>
+</html>

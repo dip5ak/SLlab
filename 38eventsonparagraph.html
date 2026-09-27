@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Q38 - Button Events</title>
+<style>
+  body { font-family: Arial, sans-serif; padding: 20px; }
+  button { margin: 4px; padding: 8px 12px; border: none; border-radius: 4px; cursor: pointer; color: #fff; }
+  #changeBg { background: #43a047; }
+  #changeParaBg { background: #fdd835; color: #000; }
+  #hidePara { background: #8e24aa; }
+  #showPara { background: #1e88e5; }
+  #increaseFont { background: #fb8c00; }
+  #decreaseFont { background: #6d4c41; }
+  #resetFont { background: #e53935; }
+  #changeColor { background: #00897b; }
+  #myPara { font-size: 12pt; padding: 10px; }
+</style>
+</head>
+<body>
+
+<button id="changeBg" onclick="changeBackground()">Change Background</button>
+<button id="changeParaBg" onclick="changeParaBackground()">Change Paragraph Background</button>
+<button id="hidePara" onclick="hideParagraph()">Hide Paragraph</button>
+<button id="showPara" onclick="showParagraph()">Show Paragraph</button>
+<button id="increaseFont" onclick="increaseFontSize()">Increase font Size by 2pt</button>
+<button id="decreaseFont" onclick="decreaseFontSize()">Decrease font Size by 2pt</button>
+<button id="resetFont" onclick="resetFontSize()">Reset font into 12 pt</button>
+<button id="changeColor" onclick="changeTextColor()">Change Text Color</button>
+
+<p id="myPara">This is a sample paragraph used to demonstrate button-triggered events.</p>
+
+<script>
+  const para = document.getElementById('myPara');
+
+  function changeBackground() {
+    document.body.style.backgroundColor =
+      '#' + Math.floor(Math.random() * 16777215).toString(16);
+  }
+
+  function changeParaBackground() {
+    para.style.backgroundColor =
+      '#' + Math.floor(Math.random() * 16777215).toString(16);
+  }
+
+  function hideParagraph() {
+    para.style.display = 'none';
+  }
+
+  function showParagraph() {
+    para.style.display = 'block';
+  }
+
+  function increaseFontSize() {
+    let size = parseFloat(getComputedStyle(para).fontSize);
+    para.style.fontSize = (size + (2 * 96 / 72)) + 'px'; // +2pt in px
+  }
+
+  function decreaseFontSize() {
+    let size = parseFloat(getComputedStyle(para).fontSize);
+    para.style.fontSize = (size - (2 * 96 / 72)) + 'px';
+  }
+
+  function resetFontSize() {
+    para.style.fontSize = '12pt';
+  }
+
+  function changeTextColor() {
+    para.style.color =
+      '#' + Math.floor(Math.random() * 16777215).toString(16);
+  }
+</script>
+</body>
+</html>
