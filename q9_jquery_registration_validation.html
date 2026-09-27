@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Registration Form Validation</title>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<style>
+body{font-family:Arial;max-width:600px;margin:30px auto}
+input,select{width:100%;padding:8px;margin:5px 0 12px;box-sizing:border-box}
+.error{color:red;font-size:14px}
+button{padding:10px 20px}
+</style>
+</head>
+<body>
+<h2>Registration Form</h2>
+<form id="regForm">
+<label>Name</label><input id="name">
+<label>Address</label><input id="address">
+<label>Username</label><input id="username">
+<label>Email</label><input id="email">
+<label>Password</label><input id="password" type="password">
+<label>Website</label><input id="website">
+<label>Phone</label><input id="phone">
+<label>Gender</label>
+<label><input type="radio" name="gender" value="Male"> Male</label>
+<label><input type="radio" name="gender" value="Female"> Female</label>
+<label><input type="radio" name="gender" value="Other"> Other</label>
+<div id="genderError" class="error"></div>
+
+<label>Course</label>
+<select id="course">
+<option value="">Select Course</option>
+<option>BCA</option>
+<option>BIM</option>
+<option>BBM</option>
+<option>CSIT</option>
+</select>
+
+<button type="submit">Register</button>
+<div id="message" class="error"></div>
+</form>
+
+<script>
+$(function(){
+    $("#regForm").submit(function(e){
+        e.preventDefault();
+        let errors=[];
+
+        const name=$("#name").val().trim();
+        const address=$("#address").val().trim();
+        const username=$("#username").val().trim();
+        const email=$("#email").val().trim();
+        const password=$("#password").val();
+        const phone=$("#phone").val().trim();
+        const gender=$("input[name='gender']:checked").val();
+        const course=$("#course").val();
+
+        if(name==="" || /\d/.test(name)) errors.push("Name is required and must not contain numbers.");
+        if(username==="" || !/^[A-Za-z0-9_]+$/.test(username))
+            errors.push("Username is required and may contain only letters, numbers and underscore.");
+        if(phone==="" || !/^(98|97|96)\d{8}$/.test(phone))
+            errors.push("Phone must contain numbers only and start with 98, 97 or 96.");
+        if(!gender) errors.push("Gender must be selected.");
+        if(address==="") errors.push("Address is required.");
+        if(email==="" || !email.includes("@")) errors.push("Valid email containing @ is required.");
+        if(!/^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^A-Za-z0-9]).{8,}$/.test(password))
+            errors.push("Password must be 8+ characters with digit, uppercase, lowercase and special character.");
+        if(course==="") errors.push("Please select a course.");
+
+        if(errors.length){
+            $("#message").html(errors.join("<br>"));
+        }else{
+            $("#message").css("color","green").text("Registration form is valid.");
+        }
+    });
+});
+</script>
+</body>
+</html>

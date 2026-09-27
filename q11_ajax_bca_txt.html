@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head><title>Display BCA Text Using AJAX</title></head>
+<body>
+<h2>BCA Description</h2>
+<button onclick="loadBCA()">Load Content</button>
+<div id="result"></div>
+
+<script>
+function loadBCA(){
+    const xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function(){
+        if(this.readyState === 4){
+            if(this.status === 200)
+                document.getElementById("result").innerText = this.responseText;
+            else
+                document.getElementById("result").innerText = "Unable to load file.";
+        }
+    };
+    xhr.open("GET", "q11_bca.txt", true);
+    xhr.send();
+}
+</script>
+</body>
+</html>
